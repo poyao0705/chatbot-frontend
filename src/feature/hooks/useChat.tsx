@@ -11,7 +11,17 @@ export function useChat() {
     // setMessages([...messages, humanMessage]);
     const assistantMessage: Message = { type: "bot", text: "...", isLoading: true };
 
-    setMessages([...messages, humanMessage, assistantMessage]);
+    setMessages((currentMessages) => [...currentMessages, humanMessage, assistantMessage]);
+
+    setTimeout(() => {
+      setMessages((currentMessages) =>
+        currentMessages.map((currentMessage) =>
+          currentMessage === assistantMessage
+            ? { ...currentMessage, isLoading: false }
+            : currentMessage,
+        ),
+      );
+    }, 1000);
   };
 
   return {

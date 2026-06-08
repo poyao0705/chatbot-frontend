@@ -173,7 +173,6 @@ That's it! You now have a basic chatbot frontend that displays messages and hand
 - This is basically a refactoring of the chat logic into a reusable hook. We are extracting the messages state and chat submission logic into a separate hook.
 - This way, the `Chatbot.tsx` component becomes cleaner and the logic becomes obvious.
 ```tsx
-
 import { useState } from 'react';
 import type { Message } from '@/feature/types';
 
@@ -194,5 +193,27 @@ export function useChat() {
     handleChatSubmit,
   };
 }
-
 ```
+- Next up, is the UI part:
+- Chat input field is attached directly under the chat output. When there are no messages, the input field sits on the very top. We want it to stay at the bottom. Likewise, the chat output section should be visible and span across the full height of the chat area, instead of growing when new messages are added.
+- Firstly, we can install Tailwind CSS to the project, so that we can use its utility classes for styling. (This is up to you, you can definitely style with plain CSS as well, plainly personal preference.)
+```bash
+pnpm install tailwindcss @tailwindcss/vite
+```
+- Add Tailwind CSS to the project.
+```ts
+// tailwind.config.js
+import tailwindcss from '@tailwindcss/vite'
+
+export default {
+  plugins: [..., tailwindcss()],
+}
+...
+```
+- let AI do the styling. Key things to fix:
+  - Chat input field should be at the bottom, not the top when there are no messages.
+  - Chat output section should be visible and span across the full height of the chat area, instead of growing when new messages are added.
+  - Chat output section should be scrollable and display the latest messages at the bottom, with older messages visible as the user scrolls up.
+  - Human messages should be aligned to the right, and AI messages should be aligned to the left.
+- Spinner should be displayed while waiting for a response from the AI.
+- Right now, we can setTimeout to simulate a delay and see the spinner in action.

@@ -13,8 +13,8 @@ export default function ChatInput({ onSubmit }: { onSubmit: (message: string) =>
 
   return (
     // when submit, call handleSubmit and passes in the submit event
-    <form onSubmit={handleInputSubmit}>
-      <input type="text" placeholder="Type your message..." value={input} onChange={(e) => setInput(e.target.value)} />
+    <form className="flex shrink-0 gap-2 border-t border-(--border) p-4" onSubmit={handleInputSubmit}>
+      <input className="min-w-0 flex-1" type="text" placeholder="Type your message..." value={input} onChange={(e) => setInput(e.target.value)} />
       <button type="submit">Send</button>
     </form>
   );

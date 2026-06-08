@@ -20,8 +20,8 @@ export default function Chatbot() {
 
 
   return (
-    <div>
-      chatbot
+    <div className="flex h-svh min-h-0 flex-col overflow-hidden">
+      <div className="shrink-0 border-b border-(--border) p-4">chatbot</div>
       <ChatOutput messages={messages} />
       <ChatInput onSubmit={handleChatSubmit} />
     </div>
