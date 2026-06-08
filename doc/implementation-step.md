@@ -117,3 +117,45 @@ export default function Chatbot() {
   ```
   
 2. ChatOutput
+  - Add a Message type for chat messages
+  ```tsx
+  export type Message = {
+    type: "human" | "bot";
+    text: string;
+    isLoading: boolean;
+  };
+  ``` 
+  - Renders the messages, including the user's input and the chatbot's response.
+  ```tsx
+  import type { Message } from "@/feature/types";
+  
+  export default function ChatOutput({ messages }: { messages: Message[] }) {
+    return (
+      // renders each message in a div with a scrollable overflow
+      <div style={{overflowY: 'scroll'}}>
+        {messages.map((message, index) => (
+          <div key={index}>{message.text}</div>
+        ))}
+      </div>
+    );
+  }
+  ```
+  - Add this component to the `Chatbot` component, and pass in the messages state:
+  ```tsx
+  import ChatOutput from './ChatOutput';
+
+  export default function Chatbot() {
+    const [messages, setMessages] = useState<Message[]>([]);
+
+    return (
+      <div>
+        <ChatOutput messages={messages} />
+        <ChatInput onSubmit={handleSubmit} />
+      </div>
+    );
+  }
+  ```
+
+That's it! You now have a basic chatbot frontend that displays messages and handles user input.
+
+## Additional Polishing
