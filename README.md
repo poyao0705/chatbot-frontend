@@ -197,8 +197,8 @@ export default function Chatbot() {
   const { messages, handleChatSubmit } = useChat();
 
   return (
-    <div className="flex h-svh min-h-0 flex-col overflow-hidden">
-      <div className="shrink-0 border-b border-(--border) p-4">chatbot</div>
+    <div>
+      <div>chatbot</div>
       <ChatOutput messages={messages} />
       <ChatInput onSubmit={handleChatSubmit} />
     </div>
