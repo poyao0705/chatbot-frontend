@@ -12,13 +12,7 @@ pnpm create vite .
 1. Chat input box
 2. Chat output area
 
-## 3. React Router
-1. Install React Router
-```bash
-pnpm install react-router
-```
-
-## 4. Add @ alias for path resolution
+## 3. Add @ alias for path resolution
 1. Update `vite.config.ts`
 ```ts
 resolve: {
@@ -36,17 +30,7 @@ resolve: {
   ...
 ```
 
-## 5.. React Router (Data Mode)
-- `router.tsx`
-Format looks like:
-```tsx
-{
-    path: "<your-url-path>",
-    element: <CorrespondingComponent />,
-  },
-```
-
-## 6. Chatbot
+## 4. Chatbot
 1. Create Chatbot component scaffold
 ```tsx
 <!--Chatbot.tsx-->
@@ -59,16 +43,22 @@ export default function Chatbot() {
 }
 
 ```
-2. Create chatbot route
+2. Render Chatbot as the landing page
 ```tsx
-<!--router.tsx-->
-{
-  path: "/chatbot",
-  element: <Chatbot />,
-},
+// main.tsx
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import Chatbot from './feature/Chatbot.tsx'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <Chatbot />
+  </StrictMode>,
+)
 ```
 
-## 7. Components Details
+## 5. Components Details
 1. ChatInput
   - Input field has a state to hold the input value
   - A callback function is passed to `onSubmit`
