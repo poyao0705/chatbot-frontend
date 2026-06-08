@@ -1,4 +1,6 @@
-# Implementation Step
+# Welcome to chatbot-frontend Demo!
+
+My current job requires me to work on a React App and AI features. Therefore, I thought this project is a good idea to learn and practice some React basics, learn how to decompose a whole app into small pieces of components.
 
 ## 1. Initial Setup
 1.  init project
