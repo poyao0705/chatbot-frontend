@@ -147,6 +147,15 @@ export default function Chatbot() {
   export default function Chatbot() {
     const [messages, setMessages] = useState<Message[]>([]);
 
+    const handleChatSubmit = (message: string) => {
+      // console.log(message)
+      const humanMessage: Message = { type: "human", text: message, isLoading: false };
+      // setMessages([...messages, humanMessage]);
+      const assistantMessage: Message = { type: "bot", text: "...", isLoading: true };
+  
+      setMessages([...messages, humanMessage, assistantMessage]);
+    };
+
     return (
       <div>
         <ChatOutput messages={messages} />
@@ -159,3 +168,31 @@ export default function Chatbot() {
 That's it! You now have a basic chatbot frontend that displays messages and handles user input.
 
 ## Additional Polishing
+- When the functionalities are growing, you may see that `Chatbot.tsx` becomes too large and hard to maintain. This is when a custom hook can help.
+- Define `useChat` hook to manage the chat messages state and chat submission logic.
+- This is basically a refactoring of the chat logic into a reusable hook. We are extracting the messages state and chat submission logic into a separate hook.
+- This way, the `Chatbot.tsx` component becomes cleaner and the logic becomes obvious.
+```tsx
+
+import { useState } from 'react';
+import type { Message } from '@/feature/types';
+
+export function useChat() {
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  const handleChatSubmit = (message: string) => {
+    // console.log(message)
+    const humanMessage: Message = { type: "human", text: message, isLoading: false };
+    // setMessages([...messages, humanMessage]);
+    const assistantMessage: Message = { type: "bot", text: "...", isLoading: true };
+
+    setMessages([...messages, humanMessage, assistantMessage]);
+  };
+
+  return {
+    messages,
+    handleChatSubmit,
+  };
+}
+
+```
