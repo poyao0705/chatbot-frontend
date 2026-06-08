@@ -12,7 +12,7 @@ export function useChat() {
     const assistantMessage: Message = { type: "bot", text: "...", isLoading: true };
 
     setMessages((currentMessages) => [...currentMessages, humanMessage, assistantMessage]);
-
+    // Simulate a loading response by setting isLoading to false after 1 second
     setTimeout(() => {
       setMessages((currentMessages) =>
         currentMessages.map((currentMessage) =>

@@ -217,3 +217,16 @@ export default {
   - Human messages should be aligned to the right, and AI messages should be aligned to the left.
 - Spinner should be displayed while waiting for a response from the AI.
 - Right now, we can setTimeout to simulate a delay and see the spinner in action.
+```tsx
+// useChat.tsx
+// Simulate a loading response by setting isLoading to false after 1 second
+setTimeout(() => {
+  setMessages((currentMessages) =>
+    currentMessages.map((currentMessage) =>
+      currentMessage === assistantMessage
+        ? { ...currentMessage, isLoading: false }
+        : currentMessage,
+    ),
+  );
+}, 1000);
+```
