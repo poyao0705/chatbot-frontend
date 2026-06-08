@@ -184,6 +184,25 @@ export function useChat() {
   };
 }
 ```
+- After this refactoring, the `Chatbot` component is super clean.
+```tsx
+import ChatInput from "./components/ChatInput";
+import ChatOutput from "./components/ChatOutput";
+
+import { useChat } from "@/feature/hooks/useChat";
+
+export default function Chatbot() {
+  const { messages, handleChatSubmit } = useChat();
+
+  return (
+    <div className="flex h-svh min-h-0 flex-col overflow-hidden">
+      <div className="shrink-0 border-b border-(--border) p-4">chatbot</div>
+      <ChatOutput messages={messages} />
+      <ChatInput onSubmit={handleChatSubmit} />
+    </div>
+  );
+}
+```
 - Next up, is the UI part:
 - Chat input field is attached directly under the chat output. When there are no messages, the input field sits on the very top. We want it to stay at the bottom. Likewise, the chat output section should be visible and span across the full height of the chat area, instead of growing when new messages are added.
 - Firstly, we can install Tailwind CSS to the project, so that we can use its utility classes for styling. (This is up to you, you can definitely style with plain CSS as well, plainly personal preference.)
